@@ -2,6 +2,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
+from apps.tasks.filters import TaskFilter
 from apps.tasks.models import Task
 from apps.tasks.serializers import TaskSerializer
 from apps.tasks.services import TaskService
@@ -11,6 +12,7 @@ from apps.utils.cutom_permissions import IsRegularUser
 class TaskViewSet(ModelViewSet):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
+    filterset_class = TaskFilter
 
     permission_classes = [IsRegularUser]
 
