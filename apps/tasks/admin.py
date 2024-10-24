@@ -5,4 +5,4 @@ from apps.tasks.models import Task
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ('title', 'status')
+    list_display = ('title', 'status', 'user')
