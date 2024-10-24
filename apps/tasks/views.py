@@ -28,6 +28,6 @@ class TaskViewSet(ModelViewSet):
         return Response(response_data, status=status.HTTP_201_CREATED)
 
     def get_queryset(self):
-        if self.request.user.user_type == 'regular':
+        if self.request.user.is_authenticated and self.request.user.user_type == 'regular':
             return self.queryset.filter(user=self.request.user)
         return self.queryset
