@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from apps.accounts.serializers import UserRegisterSerializer
+from apps.accounts.services import UserService
 
 
 class UserRegisterView(APIView):
@@ -13,7 +14,7 @@ class UserRegisterView(APIView):
     def post(self, request):
         serializer = UserRegisterSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        user = serializer.save()
+        user = UserService.register_user(serializer.validated_data)
 
         refresh = RefreshToken.for_user(user)
         response_data = {

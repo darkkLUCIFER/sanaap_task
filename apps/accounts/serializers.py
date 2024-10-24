@@ -7,8 +7,11 @@ from apps.accounts.models import User
 class UserRegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ['phone_number']
-        required_fields = ['phone_number']
+        fields = ['phone_number', 'password']
+        extra_kwargs = {
+            'password': {'write_only': True, 'required': True},
+            'phone_number': {'required': True},
+        }
 
     def validate_phone_number(self, value):
         user = User.objects.filter(phone_number=value)
