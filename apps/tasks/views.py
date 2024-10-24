@@ -5,14 +5,14 @@ from rest_framework.viewsets import ModelViewSet
 from apps.tasks.models import Task
 from apps.tasks.serializers import TaskSerializer
 from apps.tasks.services import TaskService
-from apps.utils.cutom_permissions import IsRegularAndAuthorUser
+from apps.utils.cutom_permissions import IsRegularUser
 
 
 class TaskViewSet(ModelViewSet):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
 
-    permission_classes = [IsRegularAndAuthorUser]
+    permission_classes = [IsRegularUser]
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
