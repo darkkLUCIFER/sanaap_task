@@ -1,8 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
-from apps.accounts.models import User
-
 
 class UserRegisterSerializer(serializers.ModelSerializer):
     class Meta:
@@ -13,8 +11,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             'phone_number': {'required': True},
         }
 
-    def validate_phone_number(self, value):
-        user = User.objects.filter(phone_number=value)
-        if user.exists():
-            raise serializers.ValidationError('user already exists')
-        return value
+
+class UserLoginSerializer(serializers.Serializer):
+    phone_number = serializers.CharField(required=True, max_length=12)
+    password = serializers.CharField(required=True, write_only=True)
