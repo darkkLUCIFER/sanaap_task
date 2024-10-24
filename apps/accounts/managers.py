@@ -13,7 +13,7 @@ class UserManager(BaseUserManager):
 
     def create_superuser(self, phone_number, password):
         user = self.create_user(phone_number, password)
-        user.is_admin = True
+        user.user_type = 'admin'
         user.is_superuser = True
         user.is_staff = True
         user.save(using=self._db)
