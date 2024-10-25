@@ -41,7 +41,7 @@ This will run the application on http://localhost:8000.
 ```bash
 docker-compose exec api python manage.py createsuperuser
 ```
-
+the phone should start with 98
 ### 4. Run Tests
 
 You can run tests for both the accounts and tasks apps using the following command:
