@@ -73,4 +73,4 @@ class UserLoginTests(APITestCase):
 
         response = self.client.post(self.login_url, data)
 
-        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
