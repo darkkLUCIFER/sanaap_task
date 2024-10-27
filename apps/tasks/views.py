@@ -13,6 +13,7 @@ class TaskViewSet(ModelViewSet):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
     filterset_class = TaskFilter
+    http_method_names = ['get', 'post', 'patch', 'delete']
 
     permission_classes = [IsRegularUser]
 
